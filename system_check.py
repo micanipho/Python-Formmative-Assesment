@@ -18,6 +18,8 @@ def get_departure_airport(ticket_string: str):
     Flight Number (JO234) can vary in length. You must find it relative to the hyphens.
     """
     # TODO: Write your code here
+    splitted_ticket = ticket_string.split("-")
+    return splitted_ticket[2]
     pass
 
 def check_baggage_allowance(ticket_string: str):
@@ -36,6 +38,15 @@ def check_baggage_allowance(ticket_string: str):
     - For any other code: return "Standard - 0kg"
     """
     # TODO: Write your code here
+    splitted_ticket = ticket_string.split("-")
+    cl = splitted_ticket[0]
+    if cl == "EC":
+        return "Economy - 20kg"
+    elif cl == "BS":
+        return "Business - 40kg"
+    elif cl == "FL":
+        return "First Class - 60kg"
+    return "Standard - 0kg"
     pass
 
 def validate_flight_number(ticket_string: str):
@@ -50,6 +61,17 @@ def validate_flight_number(ticket_string: str):
     - If the numeric part cannot be converted to a number, return "Invalid Flight"
     """
     # TODO: Write your code here
+    splitted_ticket = ticket_string.split("-")
+    ticket_number = splitted_ticket[1]
+    t_number = ticket_number[-1]
+
+    if t_number.isdigit():
+        if int(t_number)%2 == 0:
+            return "Valid - Northbound"
+        else:
+            return "Valid - Southbound"
+    else:
+        return "Invalid Flight"
     pass
 
 
@@ -71,6 +93,13 @@ def is_leap_year(year: int):
     
     Return True or False (Boolean).
     """
+    if year%4 == 0:
+        if year%100 == 0:
+            if year%400 == 0:
+                return True
+            return False
+        return True
+    return False
     # TODO: Write your code here
     pass
 
@@ -105,4 +134,13 @@ def reactor_status(temp: int, radiation: int):
        - For all other cases: return "Normal Operation"
     """
     # TODO: Write your code here
+    if temp < 0 or radiation < 0:
+        return "Sensor Error"
+    if temp > 2000 or radiation > 500:
+        return "CRITICAL"
+    if (temp >= 1000 and temp <= 2000) and radiation > 100:
+        return "WARNING"
+    if temp < 500:
+        return "Maintenance Mode"
+    return "Normal Operation"
     pass
