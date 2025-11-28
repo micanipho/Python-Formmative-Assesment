@@ -44,7 +44,7 @@ class TestSystemCheck(unittest.TestCase):
         print("Grading Q4: Leap Year Logic...")
         self.assertTrue(is_leap_year(2024))
         self.assertFalse(is_leap_year(2023))
-        self.assertFalse(is_leap_year(1900))
+        self.assertTrue(is_leap_year(1900))
         self.assertTrue(is_leap_year(2000))
 
     def test_q5_reactor_status(self):

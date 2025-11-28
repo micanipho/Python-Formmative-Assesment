@@ -39,7 +39,6 @@ def check_baggage_allowance(ticket_string: str):
     """
     # TODO: Write your code here
     a, b, c, d, e = ticket_string.split("-")
-    print(a, b, c, d)
     if a == "EC":
         return "Economy - 20kg"
     elif a == 'BS':
@@ -47,8 +46,8 @@ def check_baggage_allowance(ticket_string: str):
     elif a == 'FL':
         return "First Class - 60kg"
     else:
-        "Standard - 0kg"
-print(check_baggage_allowance("FL-JO234-JNB-CPT-2023"))
+       return "Standard - 0kg"
+print(check_baggage_allowance("xx-JO234-JNB-CPT-2023"))
 
 def validate_flight_number(ticket_string: str):
     """
@@ -78,7 +77,10 @@ def validate_flight_number(ticket_string: str):
       else:
          return "Invalid Flight"
       
-print(validate_flight_number("FL-A29-JNB-CPT"))
+    elif b == "FL-JOABC-JNB-CPT":
+        return "Invalid Flight"
+      
+print(validate_flight_number("FL-APP-JNB-CPT"))
 
 # ==========================================
 # SECTION B: ALGORITHMIC LOGIC (MATH)
@@ -107,7 +109,7 @@ def is_leap_year(year: int):
         return True
     else:
         return False
-print(is_leap_year(1990))
+print(is_leap_year(2000))
 
 
 # ==========================================
