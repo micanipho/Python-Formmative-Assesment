@@ -3,54 +3,64 @@
 # ==========================================
 
 def get_departure_airport(ticket_string: str):
-    """
-    QUESTION 1
-    ----------------------------------------
-    Extract the Departure Airport Code from the ticket string.
-    
-    Format of ticket_string: "FL-JO234-JNB-CPT-2023"
-    
-    Logic:
-    - The code is situated between the second and third hyphen (-).
-    - In the example "FL-JO234-JNB-CPT-2023", the departure is "JNB".
-    
-    Harder Twist: You cannot use fixed indices (e.g., [10:13]) because the 
-    Flight Number (JO234) can vary in length. You must find it relative to the hyphens.
-    """
-    # TODO: Write your code here
-    pass
+   """
+   QUESTION 1
+   ----------------------------------------
+   Extract the Departure Airport Code from the ticket string.
+   
+   Format of ticket_string: "FL-JO234-JNB-CPT-2023"
+   
+   Logic:
+   - The code is situated between the second and third hyphen (-).
+   - In the example "FL-JO234-JNB-CPT-2023", the departure is "JNB".
+   
+   Harder Twist: You cannot use fixed indices (e.g., [10:13]) because the 
+   Flight Number (JO234) can vary in length. You must find it relative to the hyphens.
+   """
+   # TODO: Write your code here
+   fl_class, fl_num, DepAirCode, ArrAirCode, fl_year = ticket_string.split("-")
+   print(f"The Departure Airport: {DepAirCode}")
 
 def check_baggage_allowance(ticket_string: str):
-    """
-    QUESTION 2
-    ----------------------------------------
-    Determine the baggage allowance based on the Flight Class.
-    
-    Format: The first two letters of the string indicate the class.
-    Example: "FL-..." starts with "FL".
-    
-    Logic:
-    - If starts with 'EC': return "Economy - 20kg"
-    - If starts with 'BS': return "Business - 40kg"
-    - If starts with 'FL': return "First Class - 60kg"
-    - For any other code: return "Standard - 0kg"
-    """
-    # TODO: Write your code here
-    pass
+   """
+   QUESTION 2
+   ----------------------------------------
+   Determine the baggage allowance based on the Flight Class.
+   
+   Format: The first two letters of the string indicate the class.
+   Example: "FL-..." starts with "FL".
+   
+   Logic:
+   - If starts with 'EC': return "Economy - 20kg"
+   - If starts with 'BS': return "Business - 40kg"
+   - If starts with 'FL': return "First Class - 60kg"
+   - For any other code: return "Standard - 0kg"
+   """
+   # TODO: Write your code here
+   fl_class, fl_num, DepAirCode, ArrAirCode, fl_year = ticket_string.split("-")
+   print(f"The Flight Class: {fl_class}")
 
 def validate_flight_number(ticket_string: str):
-    """
-    QUESTION 3
-    ----------------------------------------
-    Extract the Flight Number (the part between 1st and 2nd hyphen, e.g., "JO234").
-    
-    Logic:
-    - If the number portion (e.g., 234) is Even, return "Valid - Northbound"
-    - If the number portion is Odd, return "Valid - Southbound"
-    - If the numeric part cannot be converted to a number, return "Invalid Flight"
-    """
-    # TODO: Write your code here
-    pass
+   """
+   QUESTION 3
+   ----------------------------------------
+   Extract the Flight Number (the part between 1st and 2nd hyphen, e.g., "JO234").
+   
+   Logic:
+   - If the number portion (e.g., 234) is Even, return "Valid - Northbound"
+   - If the number portion is Odd, return "Valid - Southbound"
+   - If the numeric part cannot be converted to a number, return "Invalid Flight"
+   """
+   # TODO: Write your code here
+   fl_class, fl_num, DepAirCode, ArrAirCode, fl_year = ticket_string.split("-")
+   print(f"The Flight Number: {fl_num}")
+   flight_digits = []
+   for i in fl_num:
+      if i.isdigit:
+         flight_digits.append(i)
+   print(flight_digits)
+
+   
 
 
 # ==========================================
@@ -58,22 +68,32 @@ def validate_flight_number(ticket_string: str):
 # ==========================================
 
 def is_leap_year(year: int):
-    """
-    QUESTION 4
-    ----------------------------------------
-    Determine if a given year is a Leap Year.
-    This replaces FizzBuzz with harder Modulo logic.
-    
-    Rules:
-    1. If the year is evenly divisible by 4, go to step 2. Otherwise, False.
-    2. If the year is evenly divisible by 100, go to step 3. Otherwise, True.
-    3. If the year is evenly divisible by 400, True. Otherwise, False.
-    
-    Return True or False (Boolean).
-    """
-    # TODO: Write your code here
-    pass
-
+   """
+   QUESTION 4
+   ----------------------------------------
+   Determine if a given year is a Leap Year.
+   This replaces FizzBuzz with harder Modulo logic.
+   
+   Rules:
+   1. If the year is evenly divisible by 4, go to step 2. Otherwise, False.
+   2. If the year is evenly divisible by 100, go to step 3. Otherwise, True.
+   3. If the year is evenly divisible by 400, True. Otherwise, False.
+   
+   Return True or False (Boolean).
+   """
+   # TODO: Write your code here
+   if year % 4 == 0:
+      pass
+   else:
+      return False
+   if year % 100 == 0:
+      pass
+   else:
+      return False
+   if year % 400 == 0:
+      return True
+   else:
+      return False
 
 # ==========================================
 # SECTION C: COMPLEX LOGIC & TDD
@@ -105,4 +125,21 @@ def reactor_status(temp: int, radiation: int):
        - For all other cases: return "Normal Operation"
     """
     # TODO: Write your code here
-    pass
+    if temp < 0 or radiation < 0:
+       return "Sensor Error"
+    elif temp > 2000 or radiation > 500:
+       return "CRITICAL"
+    elif 1000 < temp > 2000 and radiation > 100:
+       return "WARNING"
+    elif temp < 500:
+       return "Maintenance Mode"
+    else:
+       return "Normal Operation"
+
+get_departure_airport("FL-JO234-JNB-CPT-2023")
+check_baggage_allowance("FL-JO234-JNB-CPT-2023")
+validate_flight_number("FL-JO234-JNB-CPT-2023")
+print(is_leap_year(2000))
+print(is_leap_year(2001))
+print(is_leap_year(2002))
+print(is_leap_year(2016))
