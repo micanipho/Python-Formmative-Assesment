@@ -18,7 +18,9 @@ def get_departure_airport(ticket_string: str):
     Flight Number (JO234) can vary in length. You must find it relative to the hyphens.
     """
     # TODO: Write your code here
-    pass
+    ticket_string = ticket_string.strip().split("-")
+    code = ticket_string[2]
+    return code
 
 def check_baggage_allowance(ticket_string: str):
     """
@@ -36,7 +38,14 @@ def check_baggage_allowance(ticket_string: str):
     - For any other code: return "Standard - 0kg"
     """
     # TODO: Write your code here
-    pass
+    if ticket_string.startswith("EC"):
+        return "Economy - 20kg"
+    elif ticket_string.startswith("BS"):
+        return "Business - 40kg"
+    elif ticket_string.startswith("FL"):
+        return "First Class - 60kg"
+    else:
+        return "Standard - 0kg"
 
 def validate_flight_number(ticket_string: str):
     """
@@ -50,7 +59,17 @@ def validate_flight_number(ticket_string: str):
     - If the numeric part cannot be converted to a number, return "Invalid Flight"
     """
     # TODO: Write your code here
-    pass
+    ticket_string = ticket_string.strip().split("-")
+    flight_info = ticket_string[1]
+    checker = int(flight_info[-1])
+
+    if checker % 2 == 0:
+        return "Valid - Northbound"
+    if checker % 2 != 0:
+        return "Valid - Southbound"
+    else:
+        return "Invalid flight"        #probably had to use exceptions somewhere here
+
 
 
 # ==========================================
@@ -72,7 +91,12 @@ def is_leap_year(year: int):
     Return True or False (Boolean).
     """
     # TODO: Write your code here
-    pass
+    if year % 400 == 0:
+        if year % 100 == 0:
+            if year % 4 == 0:
+                return True
+            return False
+
 
 
 # ==========================================
@@ -105,4 +129,16 @@ def reactor_status(temp: int, radiation: int):
        - For all other cases: return "Normal Operation"
     """
     # TODO: Write your code here
-    pass
+    if temp < 500:
+        return "Maintenance Mode"
+    elif temp < 0 or radiation < 0:
+        return "Sensor Error"
+    elif temp > 2000 or radiation > 500:
+        return "CRITICAL"
+    elif 1000 < temp < 2000 and radiation > 100:
+        return "WARNING"
+    else:
+        return "Normal Mode"
+    
+    
+    
