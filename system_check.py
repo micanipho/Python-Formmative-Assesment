@@ -38,7 +38,7 @@ def check_baggage_allowance(ticket_string: str):
     - For any other code: return "Standard - 0kg"
     """
     # TODO: Write your code here
-    a, b, c, d, e = ticket_string.split("-")
+    a, b, c, d = ticket_string.split("-")
     if a == "EC":
         return "Economy - 20kg"
     elif a == 'BS':
@@ -47,7 +47,7 @@ def check_baggage_allowance(ticket_string: str):
         return "First Class - 60kg"
     else:
        return "Standard - 0kg"
-print(check_baggage_allowance("xx-JO234-JNB-CPT-2023"))
+print(check_baggage_allowance("EC-JO234-JNB-CPT"))
 
 def validate_flight_number(ticket_string: str):
     """
