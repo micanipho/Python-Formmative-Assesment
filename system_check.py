@@ -18,7 +18,11 @@ def get_departure_airport(ticket_string: str):
     Flight Number (JO234) can vary in length. You must find it relative to the hyphens.
     """
     # TODO: Write your code here
-    pass
+    departure_code = ticket_string.split("-")[2]
+    return departure_code
+
+
+    
 
 def check_baggage_allowance(ticket_string: str):
     """
@@ -36,7 +40,22 @@ def check_baggage_allowance(ticket_string: str):
     - For any other code: return "Standard - 0kg"
     """
     # TODO: Write your code here
-    pass
+    if ticket_string.split("-")[0] == "EC":
+      baggage_allowance = 20
+      print("Economy - 20kg")
+    elif ticket_string.split("-")[0] == "BS":
+      baggage_allowance = 40
+      print("Business - 40kg")
+    elif ticket_string.split("-")[0] == "FL":
+      baggage_allowance = 60
+      print("First Class - 60kg")
+    else:
+      baggage_allowance = 0
+      print("Standard - 0kg")
+      return baggage_allowance
+check_baggage_allowance("FL-JO234-JNB-CPT-2023")
+    
+   
 
 def validate_flight_number(ticket_string: str):
     """
@@ -50,8 +69,23 @@ def validate_flight_number(ticket_string: str):
     - If the numeric part cannot be converted to a number, return "Invalid Flight"
     """
     # TODO: Write your code here
-    pass
+    flight_number = ticket_string.split("-")[1]
+    print(flight_number)
+    
+    for i in flight_number: 
+        direction_val = 0
+        if i is int:
+            direction_val += i
 
+    if direction_val / 2 == 0 :
+       print("Valid - Northbound")
+    
+    elif direction_val / 2 != 0 :
+        print("Valid - Southbound")
+    else:
+       print("Invalid Flight")
+
+validate_flight_number("FL-JO234-JNB-CPT-2023")
 
 # ==========================================
 # SECTION B: ALGORITHMIC LOGIC (MATH)
@@ -71,10 +105,15 @@ def is_leap_year(year: int):
     
     Return True or False (Boolean).
     """
-    # TODO: Write your code here
-    pass
-
-
+    #TODO: Write your code here
+    if year % 4 != 0:
+       return False
+    elif year % 100 != 0 :
+       return False
+    else:
+       if year % 400 != 0:
+          return False
+       
 # ==========================================
 # SECTION C: COMPLEX LOGIC & TDD
 # ==========================================
@@ -104,5 +143,7 @@ def reactor_status(temp: int, radiation: int):
     5. NORMAL:
        - For all other cases: return "Normal Operation"
     """
-    # TODO: Write your code here
-    pass
+    #TODO: Write your code here
+    if temp < 0 or radiation < 0:
+       return "Sensor Error"
+    
