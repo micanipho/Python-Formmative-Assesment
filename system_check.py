@@ -67,15 +67,18 @@ def validate_flight_number(ticket_string: str):
     # TODO: Write your code here
     new_string = ticket_string.split("-")
     flight_number = new_string[1]
-    number_portion = int(flight_number.replace("JO", "").replace("A", ""))
+    # I finally figured it out! is.digit() is a str method, and I was using it after I had converted number_portion into an int. Brain cells restored! 
+    number_portion = str(flight_number.replace("JO", "").replace("A", ""))
+    if not number_portion.isdigit():
+        return "Invalid Flight"
+    
+    number_portion = int(number_portion)
+
     if number_portion % 2 == 0:
         return "Valid - Northbound"
     if number_portion % 2 != 0:
-        return "Valid - Southbound"
-    # I don't know what's wrong with this part of the code, I lost my brain cells!!!
-    if number_portion.isdigit() == False:
-        return "Invalid Flight"
-print(validate_flight_number("FL-A9-JNB-CPT-2023"))
+        return "Valid - Southbound" 
+print(validate_flight_number("FL-JOABC-JNB-CPT-2023"))
 
 
 
